@@ -382,7 +382,7 @@ public class SCLAlertView: UIViewController {
     }
     
     // showWarning(view, title, subTitle)
-    public func showWarning(title: String, subTitle: String, closeButtonTitle:String?=nil, duration:NSTimeInterval=0.0, colorStyle: UInt=0xFFD110, colorTextButton: UInt=0x000000, circleIconImage: UIImage? = nil) -> SCLAlertViewResponder {
+    public func showWarning(title: String, subTitle: String, closeButtonTitle:String?=nil, duration:NSTimeInterval=0.0, colorStyle: UInt=0xF66924, colorTextButton: UInt=0x000000, circleIconImage: UIImage? = nil) -> SCLAlertViewResponder {
         return showTitle(title, subTitle: subTitle, duration: duration, completeText:closeButtonTitle, style: .Warning, colorStyle: colorStyle, colorTextButton: colorTextButton, circleIconImage: circleIconImage)
     }
     
@@ -396,7 +396,7 @@ public class SCLAlertView: UIViewController {
         return showTitle(title, subTitle: subTitle, duration: duration, completeText:closeButtonTitle, style: .Wait, colorStyle: colorStyle, colorTextButton: colorTextButton, circleIconImage: circleIconImage)
     }
     
-    public func showEdit(title: String, subTitle: String, closeButtonTitle:String?=nil, duration:NSTimeInterval=0.0, colorStyle: UInt=0xA429FF, colorTextButton: UInt=0xFFFFFF, circleIconImage: UIImage? = nil) -> SCLAlertViewResponder {
+    public func showEdit(title: String, subTitle: String, closeButtonTitle:String?=nil, duration:NSTimeInterval=0.0, colorStyle: UInt=0x007FCE, colorTextButton: UInt=0xFFFFFF, circleIconImage: UIImage? = nil) -> SCLAlertViewResponder {
         return showTitle(title, subTitle: subTitle, duration: duration, completeText:closeButtonTitle, style: .Edit, colorStyle: colorStyle, colorTextButton: colorTextButton, circleIconImage: circleIconImage)
     }
     
@@ -470,7 +470,7 @@ public class SCLAlertView: UIViewController {
         
         // Done button
         if showCloseButton {
-            let txt = completeText != nil ? completeText! : "Done"
+            let txt = completeText != nil ? completeText! : (style == .Edit ? "Cancel" : "Done")
             addButton(txt, target:self, selector:Selector("hideView"))
         }
         
@@ -494,7 +494,7 @@ public class SCLAlertView: UIViewController {
         circleIconView!.frame = CGRectMake( x, x, kCircleIconHeight, kCircleIconHeight)
         
         for txt in inputs {
-            txt.layer.borderColor = viewColor.CGColor
+            txt.layer.borderColor = self.UIColorFromRGB(0xEEF0F2).CGColor
         }
         for btn in buttons {
             btn.backgroundColor = viewColor
