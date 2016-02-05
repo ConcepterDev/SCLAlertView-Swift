@@ -503,6 +503,7 @@ public class SCLAlertView: UIViewController {
                 btn.backgroundColor = UIColor.whiteColor()
                 btn.setTitleColor(viewColor, forState:UIControlState.Normal)
                 btn.layer.borderColor = viewColor.CGColor
+                btn.layer.borderWidth = 0.5
             } else {
                 btn.backgroundColor = viewColor
                 btn.setTitleColor(UIColorFromRGB(colorTextButton!), forState:UIControlState.Normal)
