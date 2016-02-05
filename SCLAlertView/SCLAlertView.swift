@@ -39,6 +39,8 @@ public class SCLButton: UIButton {
     }
 }
 
+public class SCLButtonCancel: SCLButton {}
+
 // Allow alerts to be closed/renamed in a chainable manner
 // Example: SCLAlertView().showSuccess(self, title: "Test", subTitle: "Value").close()
 public class SCLAlertViewResponder {
@@ -291,7 +293,7 @@ public class SCLAlertView: UIViewController {
         // Update view height
         kWindowHeight += kButtonHeight
         // Add button
-        let btn = SCLButton()
+        let btn = (title == "Cancel" || title == "Done" ? SCLButtonCancel() : SCLButton() )
         btn.layer.masksToBounds = true
         btn.setTitle(title, forState: .Normal)
         btn.titleLabel?.font = UIFont(name:kButtonFont, size: 14)
@@ -497,8 +499,14 @@ public class SCLAlertView: UIViewController {
             txt.layer.borderColor = self.UIColorFromRGB(0xEEF0F2).CGColor
         }
         for btn in buttons {
-            btn.backgroundColor = viewColor
-            btn.setTitleColor(UIColorFromRGB(colorTextButton!), forState:UIControlState.Normal)
+            if btn.isKindOfClass(SCLButtonCancel) {
+                btn.backgroundColor = UIColor.whiteColor()
+                btn.setTitleColor(viewColor, forState:UIControlState.Normal)
+                btn.layer.borderColor = viewColor.CGColor
+            } else {
+                btn.backgroundColor = viewColor
+                btn.setTitleColor(UIColorFromRGB(colorTextButton!), forState:UIControlState.Normal)
+            }
         }
         
         // Adding duration
