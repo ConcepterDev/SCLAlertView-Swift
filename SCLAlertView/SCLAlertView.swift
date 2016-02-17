@@ -59,6 +59,10 @@ public class SCLAlertViewResponder {
         self.alertview.viewText.text = subTitle
     }
     
+    public func setCustomView(view: UIView) {
+        self.alertview.customView = view
+    }
+    
     public func close() {
         self.alertview.hideView()
     }
@@ -86,6 +90,8 @@ public class SCLAlertView: UIViewController {
     var kTextHeight: CGFloat = 90.0
     let kTextFieldHeight: CGFloat = 45.0
     let kButtonHeight: CGFloat = 45.0
+    let kCustomViewHeight: CGFloat = 120.0
+    
     
     // Font
     let kDefaultFont = "HelveticaNeue"
@@ -106,7 +112,10 @@ public class SCLAlertView: UIViewController {
     var baseView = UIView()
     var labelTitle = UILabel()
     var viewText = UITextView()
-    var contentView = UIView()
+    var customView: UIView?
+    var userAvatarImage: UIImage!
+    var friendAvatarImage: UIImage!
+    var contentView = UIView(frame: CGRectZero)
     var circleBG = UIView(frame:CGRect(x:0, y:0, width:kCircleHeightBackground, height:kCircleHeightBackground))
     var circleView = UIView()
     var circleIconView : UIView?
@@ -186,6 +195,9 @@ public class SCLAlertView: UIViewController {
         consumedHeight += 14
         consumedHeight += kButtonHeight * CGFloat(buttons.count)
         consumedHeight += kTextFieldHeight * CGFloat(inputs.count)
+        if let _ = customView {
+            consumedHeight += kCustomViewHeight
+        }
         let maxViewTextHeight = maxHeight - consumedHeight
         let viewTextWidth = kWindowWidth - 24
         let suggestedViewTextSize = viewText.sizeThatFits(CGSizeMake(viewTextWidth, CGFloat.max))
@@ -223,6 +235,16 @@ public class SCLAlertView: UIViewController {
             txt.layer.cornerRadius = fieldCornerRadius
             y += kTextFieldHeight
         }
+        
+        // Custom Views
+        if let _ = customView {
+            let widthLevelView = kWindowWidth / 1.9
+            let levelView = SoulmateNextLevel(frame: CGRect(x: (kWindowWidth - (widthLevelView)) / 2.0, y: y - 15, width: widthLevelView, height:widthLevelView))
+            levelView.setAvatars(self.userAvatarImage, friendImage: self.friendAvatarImage)
+            contentView.addSubview(levelView)
+            y += kCustomViewHeight
+        }
+        
         // Buttons
         for btn in buttons {
             btn.frame = CGRect(x:12, y:y, width:kWindowWidth - 24, height:35)
@@ -407,8 +429,16 @@ public class SCLAlertView: UIViewController {
         return showTitle(title, subTitle: subTitle, duration:duration, completeText:closeButtonTitle, style: style, colorStyle: colorStyle, colorTextButton: colorTextButton, circleIconImage: circleIconImage)
     }
     
+    //MARK: - Custom methods
+    
+    // showLevelInfo(view, title, subTitle, userAvatarURL, friendAvatarURL)
+    
+    public func showLevelInfo(title: String, subTitle: String, closeButtonTitle:String?=nil, duration:NSTimeInterval=0.0, colorStyle: UInt=0x2866BF, colorTextButton: UInt=0xFFFFFF, circleIconImage: UIImage? = nil, isLevelAlert: Bool = false, userAvatarImage: UIImage? = nil, friendAvatarImage: UIImage? = nil) -> SCLAlertViewResponder {
+        return showTitle(title, subTitle: subTitle, duration: duration, completeText:closeButtonTitle, style: .Info, colorStyle: colorStyle, colorTextButton: colorTextButton, circleIconImage: circleIconImage, isLevelAlert: isLevelAlert, userAvatarImage: userAvatarImage, friendAvatarImage: friendAvatarImage)
+    }
+    
     // showTitle(view, title, subTitle, duration, style)
-    public func showTitle(title: String, subTitle: String, duration: NSTimeInterval?, completeText: String?, style: SCLAlertViewStyle, colorStyle: UInt?, colorTextButton: UInt?, circleIconImage: UIImage? = nil) -> SCLAlertViewResponder {
+    public func showTitle(title: String, subTitle: String, duration: NSTimeInterval?, completeText: String?, style: SCLAlertViewStyle, colorStyle: UInt?, colorTextButton: UInt?, circleIconImage: UIImage? = nil, isLevelAlert: Bool = false, userAvatarImage: UIImage? = nil, friendAvatarImage: UIImage? = nil) -> SCLAlertViewResponder {
         selfReference = self
         view.alpha = 0
         let rv = UIApplication.sharedApplication().keyWindow! as UIWindow
@@ -467,6 +497,20 @@ public class SCLAlertView: UIViewController {
             if ht < kTextHeight {
                 kWindowHeight -= (kTextHeight - ht)
                 kTextHeight = ht
+            }
+        }
+        
+        
+        // Custom view
+        
+        if (isLevelAlert) {
+            
+            if let userImage = userAvatarImage {
+                if let friendImage = friendAvatarImage {
+                    self.userAvatarImage = userImage
+                    self.friendAvatarImage = friendImage
+                    self.customView = UIView()
+                }
             }
         }
         
