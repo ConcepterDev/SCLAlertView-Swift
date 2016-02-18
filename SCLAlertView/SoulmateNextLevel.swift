@@ -17,8 +17,8 @@ class SoulmateNextLevel: UIView {
     @IBOutlet weak var backgroundImage: UIImageView!
     
     required init?(coder aDecoder: NSCoder) {
-//        self.mainView = UIView()
-//        self.backgroundImage = UIImageView()
+        self.mainView = UIView()
+        self.backgroundImage = UIImageView()
         super.init(coder: aDecoder)
         self.commonInit()
     }
