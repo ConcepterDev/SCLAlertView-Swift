@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 
-class AutolayoutCircleImageView: UIImageView {
+class AutolayoutWithCircleImageView: UIImageView {
     
     override func layoutSubviews() {
         super.layoutSubviews()
