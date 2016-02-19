@@ -21,17 +21,13 @@ class SoulmateNextLevel: UIView {
     }
     
     override init(frame: CGRect) {
-        self.backgroundImage = UIImageView()
         super.init(frame: frame)
         
         NSBundle(forClass: self.classForCoder).loadNibNamed("SoulmateNextLevel", owner: self, options: nil)
         self.addSubview(self.mainView)
         
-        
-//        let image = UIImage(named: "next_level_background", inBundle: bundle, compatibleWithTraitCollection: nil)
-//        let image = UIImage(named: "next_level_background", inBundle: NSBundle(forClass: SoulmateNextLevel.self), compatibleWithTraitCollection: nil)
-//        let image = UIImage(named: "errorScreenshot", inBundle: NSBundle(forClass: self.classForCoder), compatibleWithTraitCollection: nil)
-//        self.backgroundImage.image = image
+        let image = UIImage(named: "next_level_background", inBundle: NSBundle(forClass: self.classForCoder), compatibleWithTraitCollection: nil)
+        self.backgroundImage.image = image
     }
     
     func setAvatars(userImage: UIImage!, friendImage: UIImage!) {
