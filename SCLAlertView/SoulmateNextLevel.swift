@@ -12,40 +12,30 @@ import UIKit
 class SoulmateNextLevel: UIView {
     
     @IBOutlet var mainView: UIView!
-    @IBOutlet weak var userAvatar: CircleImageView!
-    @IBOutlet weak var friendAvatar: CircleImageView!
-    @IBOutlet weak var backgroundImage: UIImageView!
+    @IBOutlet var userAvatar: CircleImageView!
+    @IBOutlet var friendAvatar: CircleImageView!
+    @IBOutlet var backgroundImage: UIImageView!
     
     required init?(coder aDecoder: NSCoder) {
-        self.mainView = UIView()
-        self.backgroundImage = UIImageView()
         super.init(coder: aDecoder)
-        self.commonInit()
     }
     
     override init(frame: CGRect) {
+        self.backgroundImage = UIImageView()
         super.init(frame: frame)
-        self.commonInit()
-    }
-    
-    private func commonInit() {
-        NSBundle(forClass: SoulmateNextLevel.self).loadNibNamed("SoulmateNextLevel", owner: self, options: nil)
-        guard let content = mainView else { return }
-        content.frame = self.bounds
-        self.addSubview(content)
-    }
- 
-    func setAvatarImage(image: UIImage!, profileImage: UIImageView!) {
-        profileImage.image = image
-//        
-//        let currentBundle = NSBundle(forClass: SoulmateNextLevel.self)
-//        let path = currentBundle.pathForResource("next_level_background", ofType: "png")
-//        self.backgroundImage.image = UIImage(contentsOfFile: path!)
         
+        NSBundle(forClass: self.classForCoder).loadNibNamed("SoulmateNextLevel", owner: self, options: nil)
+        self.addSubview(self.mainView)
+        
+        
+//        let image = UIImage(named: "next_level_background", inBundle: bundle, compatibleWithTraitCollection: nil)
+//        let image = UIImage(named: "next_level_background", inBundle: NSBundle(forClass: SoulmateNextLevel.self), compatibleWithTraitCollection: nil)
+//        let image = UIImage(named: "errorScreenshot", inBundle: NSBundle(forClass: self.classForCoder), compatibleWithTraitCollection: nil)
+//        self.backgroundImage.image = image
     }
     
     func setAvatars(userImage: UIImage!, friendImage: UIImage!) {
-        self.setAvatarImage(userImage, profileImage: self.userAvatar)
-        self.setAvatarImage(friendImage, profileImage: self.friendAvatar)
+        self.userAvatar.image = userImage
+        self.friendAvatar.image = friendImage
     }
 }
