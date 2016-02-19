@@ -25,13 +25,14 @@ class SoulmateNextLevel: UIView {
         
         NSBundle(forClass: self.classForCoder).loadNibNamed("SoulmateNextLevel", owner: self, options: nil)
         self.addSubview(self.mainView)
-        
-        let image = UIImage(named: "next_level_background", inBundle: NSBundle(forClass: self.classForCoder), compatibleWithTraitCollection: nil)
-        self.backgroundImage.image = image
     }
     
     func setAvatars(userImage: UIImage!, friendImage: UIImage!) {
         self.userAvatar.image = userImage
         self.friendAvatar.image = friendImage
+    }
+    
+    func setBackgroundImageView(image: UIImage!) {
+            self.backgroundImage.image = image
     }
 }
