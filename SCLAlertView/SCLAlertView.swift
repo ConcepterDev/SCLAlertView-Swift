@@ -116,6 +116,7 @@ public class SCLAlertView: UIViewController {
     var userAvatarImage: UIImage!
     var friendAvatarImage: UIImage!
     var backgroundImage: UIImage!
+    var contentImage: UIImage!
     var contentView = UIView(frame: CGRectZero)
     var circleBG = UIView(frame:CGRect(x:0, y:0, width:kCircleHeightBackground, height:kCircleHeightBackground))
     var circleView = UIView()
@@ -242,6 +243,7 @@ public class SCLAlertView: UIViewController {
             let widthLevelView = kWindowWidth / 1.9
             let levelView = SoulmateNextLevel(frame: CGRect(x: (kWindowWidth - (widthLevelView)) / 2.0, y: y - 15, width: widthLevelView, height:widthLevelView))
             levelView.setBackgroundImageView(self.backgroundImage)
+            levelView.setContentImageView(self.contentImage)
             levelView.setAvatars(self.userAvatarImage, friendImage: self.friendAvatarImage)
             contentView.addSubview(levelView)
             y += kCustomViewHeight
@@ -435,12 +437,13 @@ public class SCLAlertView: UIViewController {
     
     // showLevelInfo(view, title, subTitle, userAvatarURL, friendAvatarURL)
     
-    public func showLevelInfo(title: String, subTitle: String, closeButtonTitle:String?=nil, duration:NSTimeInterval=0.0, colorStyle: UInt=0x2866BF, colorTextButton: UInt=0xFFFFFF, circleIconImage: UIImage? = nil, isLevelAlert: Bool = false, userAvatarImage: UIImage? = nil, friendAvatarImage: UIImage? = nil, backgroundImage: UIImage? = nil) -> SCLAlertViewResponder {
-        return showTitle(title, subTitle: subTitle, duration: duration, completeText:closeButtonTitle, style: .Info, colorStyle: colorStyle, colorTextButton: colorTextButton, circleIconImage: circleIconImage, isLevelAlert: isLevelAlert, userAvatarImage: userAvatarImage, friendAvatarImage: friendAvatarImage, backgroundImage: backgroundImage)
+    public func showLevelInfo(title: String, subTitle: String, closeButtonTitle:String?=nil, duration:NSTimeInterval=0.0, colorStyle: UInt=0x2866BF, colorTextButton: UInt=0xFFFFFF, circleIconImage: UIImage? = nil, isLevelAlert: Bool = false, userAvatarImage: UIImage? = nil, friendAvatarImage: UIImage? = nil, backgroundImage: UIImage? = nil, contentImage: UIImage? = nil) -> SCLAlertViewResponder {
+        return showTitle(title, subTitle: subTitle, duration: duration, completeText:closeButtonTitle, style: .Info, colorStyle: colorStyle, colorTextButton: colorTextButton, circleIconImage: circleIconImage, isLevelAlert: isLevelAlert, userAvatarImage: userAvatarImage, friendAvatarImage: friendAvatarImage, backgroundImage: backgroundImage, contentImage: contentImage)
     }
     
     // showTitle(view, title, subTitle, duration, style)
-    public func showTitle(title: String, subTitle: String, duration: NSTimeInterval?, completeText: String?, style: SCLAlertViewStyle, colorStyle: UInt?, colorTextButton: UInt?, circleIconImage: UIImage? = nil, isLevelAlert: Bool = false, userAvatarImage: UIImage? = nil, friendAvatarImage: UIImage? = nil, backgroundImage: UIImage? = nil) -> SCLAlertViewResponder {
+    public func showTitle(title: String, subTitle: String, duration: NSTimeInterval?, completeText: String?, style: SCLAlertViewStyle, colorStyle: UInt?, colorTextButton: UInt?, circleIconImage: UIImage? = nil, isLevelAlert: Bool = false, userAvatarImage: UIImage? = nil, friendAvatarImage: UIImage? = nil, backgroundImage: UIImage? = nil, contentImage: UIImage? = nil) -> SCLAlertViewResponder {
+        
         selfReference = self
         view.alpha = 0
         let rv = UIApplication.sharedApplication().keyWindow! as UIWindow
@@ -513,6 +516,9 @@ public class SCLAlertView: UIViewController {
                     self.friendAvatarImage = friendImage
                     if let bgImage = backgroundImage {
                         self.backgroundImage = bgImage
+                    }
+                    if let image = contentImage {
+                        self.contentImage = image
                     }
                     self.customView = UIView()
                 }

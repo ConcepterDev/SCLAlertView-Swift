@@ -8,6 +8,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SoulmateNextLevel" customModule="SCLAlertView" customModuleProvider="target">
             <connections>
                 <outlet property="backgroundImage" destination="VYd-Mn-0bb" id="Pfo-lW-ovO"/>
+                <outlet property="contentImage" destination="siG-Mb-KmR" id="Ayl-Zf-OgK"/>
                 <outlet property="friendAvatar" destination="A7c-fB-9yk" id="PuQ-ir-PCb"/>
                 <outlet property="mainView" destination="Ltf-Ef-v0T" id="AM0-c2-K8Y"/>
                 <outlet property="userAvatar" destination="LuT-fX-8uM" id="dq9-MI-wXF"/>
@@ -18,7 +19,10 @@
             <rect key="frame" x="0.0" y="0.0" width="125" height="125"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
-                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="next_level_background.png" translatesAutoresizingMaskIntoConstraints="NO" id="VYd-Mn-0bb" userLabel="Background Image">
+                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="siG-Mb-KmR" userLabel="Content Image">
+                    <rect key="frame" x="-1" y="0.0" width="126" height="125"/>
+                </imageView>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="VYd-Mn-0bb" userLabel="Background Image">
                     <rect key="frame" x="0.0" y="0.0" width="125" height="125"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                 </imageView>
@@ -60,10 +64,14 @@
                 </view>
             </subviews>
             <constraints>
+                <constraint firstItem="siG-Mb-KmR" firstAttribute="height" secondItem="Ltf-Ef-v0T" secondAttribute="height" id="2tS-yC-1Uc"/>
                 <constraint firstItem="VYd-Mn-0bb" firstAttribute="height" secondItem="Ltf-Ef-v0T" secondAttribute="height" id="HiB-UY-68s"/>
+                <constraint firstItem="siG-Mb-KmR" firstAttribute="centerY" secondItem="Ltf-Ef-v0T" secondAttribute="centerY" id="J6b-lZ-fCo"/>
                 <constraint firstItem="3qs-Ss-0NV" firstAttribute="centerX" secondItem="VYd-Mn-0bb" secondAttribute="centerX" id="MEl-c4-M9e"/>
                 <constraint firstItem="3qs-Ss-0NV" firstAttribute="height" secondItem="VYd-Mn-0bb" secondAttribute="height" id="Swu-2L-YUg"/>
+                <constraint firstItem="siG-Mb-KmR" firstAttribute="width" secondItem="Ltf-Ef-v0T" secondAttribute="width" id="V4t-zM-SkN"/>
                 <constraint firstItem="3qs-Ss-0NV" firstAttribute="centerY" secondItem="VYd-Mn-0bb" secondAttribute="centerY" id="WQg-U4-lgu"/>
+                <constraint firstItem="siG-Mb-KmR" firstAttribute="centerX" secondItem="Ltf-Ef-v0T" secondAttribute="centerX" id="Z9w-SI-Pk8"/>
                 <constraint firstItem="VYd-Mn-0bb" firstAttribute="centerY" secondItem="Ltf-Ef-v0T" secondAttribute="centerY" id="bH1-9e-zPe"/>
                 <constraint firstItem="VYd-Mn-0bb" firstAttribute="width" secondItem="Ltf-Ef-v0T" secondAttribute="width" id="iI1-d3-aRd"/>
                 <constraint firstItem="3qs-Ss-0NV" firstAttribute="width" secondItem="VYd-Mn-0bb" secondAttribute="width" id="uTz-ML-JM2"/>
@@ -74,7 +82,4 @@
             <point key="canvasLocation" x="433.5" y="83.5"/>
         </view>
     </objects>
-    <resources>
-        <image name="next_level_background.png" width="125" height="125"/>
-    </resources>
 </document>

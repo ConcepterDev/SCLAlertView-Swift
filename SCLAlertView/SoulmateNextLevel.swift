@@ -15,6 +15,7 @@ class SoulmateNextLevel: UIView {
     @IBOutlet var userAvatar: CircleImageView!
     @IBOutlet var friendAvatar: CircleImageView!
     @IBOutlet var backgroundImage: UIImageView!
+    @IBOutlet var contentImage: UIImageView!
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -34,5 +35,9 @@ class SoulmateNextLevel: UIView {
     
     func setBackgroundImageView(image: UIImage!) {
             self.backgroundImage.image = image
+    }
+    
+    func setContentImageView(image: UIImage!) {
+        self.contentImage.image = image
     }
 }
