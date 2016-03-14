@@ -319,7 +319,7 @@ public class SCLAlertView: UIViewController {
         // Update view height
         kWindowHeight += kButtonHeight
         // Add button
-        let btn = (title == "Cancel" || title == "Done" ? SCLButtonCancel() : SCLButton() )
+        let btn = (title == "Cancel" || title == "OK" ? SCLButtonCancel() : SCLButton() )
         btn.layer.masksToBounds = true
         btn.setTitle(title, forState: .Normal)
         btn.titleLabel?.font = UIFont(name:kButtonFont, size: 14)
