@@ -527,7 +527,7 @@ public class SCLAlertView: UIViewController {
         
         // Done button
         if showCloseButton {
-            let txt = completeText != nil ? completeText! : (style == .Edit ? "Cancel" : "Done")
+            let txt = completeText != nil ? completeText! : (style == .Edit ? "Cancel" : "OK")
             addButton(txt, target:self, selector:Selector("hideView"))
         }
         
