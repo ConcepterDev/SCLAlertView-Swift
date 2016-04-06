@@ -123,6 +123,7 @@ public class SCLAlertView: UIViewController {
     var circleIconView : UIView?
     var durationTimer: NSTimer!
     var dismissBlock : DismissBlock?
+    
     private var inputs = [UITextField]()
     private var buttons = [SCLButton]()
     private var selfReference: SCLAlertView?
@@ -181,6 +182,7 @@ public class SCLAlertView: UIViewController {
     override public init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
         super.init(nibName:nibNameOrNil, bundle:nibBundleOrNil)
     }
+    
     
     override public func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
@@ -272,6 +274,16 @@ public class SCLAlertView: UIViewController {
     override public func touchesEnded(touches:Set<UITouch>, withEvent event:UIEvent?) {
         if event?.touchesForView(view)?.count > 0 {
             view.endEditing(true)
+        }
+    }
+    
+    
+    override public func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        var location: CGPoint = touches.first!.locationInView(self.baseView)
+        var fingerRect: CGRect = CGRectMake(location.x - 5, location.y - 5, 10, 10)
+        var subviewFrame: CGRect = contentView.frame
+        if !CGRectIntersectsRect(fingerRect, subviewFrame) {
+            hideView()
         }
     }
     
@@ -504,7 +516,6 @@ public class SCLAlertView: UIViewController {
                 kTextHeight = ht
             }
         }
-        
         
         // Custom view
         
